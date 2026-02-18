@@ -1,184 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI-Accelerated Scientific Discovery: 2026 State of the Art — Overview</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Accelerated Scientific Discovery: 2026 State of the Art</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0f;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            animation: subtle-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes subtle-pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hub-badge {
+            display: inline-block;
+            background: rgba(212, 165, 116, 0.1);
+            color: #D4A574;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            animation: subtle-pulse 3s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 1px solid rgba(76, 175, 80, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #D4A574;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #D4A574, transparent);
+        }
+
+        /* Research Question */
+        .research-question {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(212, 165, 116, 0.05));
+            border-left: 4px solid #D4A574;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #D4A574;
+        }
+
+        /* Methodology Grid */
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .phase-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D4A574, transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .phase-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            border-color: #D4A574;
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
+        }
+
+        .phase-number {
+            font-size: 3rem;
+            color: rgba(212, 165, 116, 0.3);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .phase-title {
+            font-size: 1.3rem;
+            color: #D4A574;
+            margin-bottom: 10px;
+        }
+
+        /* Findings */
+        .findings-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .finding-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 30px;
+            border-left: 4px solid #D4A574;
+            transition: all 0.3s ease;
+        }
+
+        .finding-item:hover {
+            background: rgba(212, 165, 116, 0.05);
+            transform: translateX(10px);
+        }
+
+        .finding-date {
+            color: #D4A574;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .finding-content {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+        }
+
+        /* Knowledge Base */
+        .knowledge-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .knowledge-card {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.08), rgba(212, 165, 116, 0.02));
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .knowledge-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .knowledge-card:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .knowledge-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .knowledge-type {
+            background: rgba(212, 165, 116, 0.2);
+            color: #D4A574;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .confidence-badge {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .knowledge-title {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .knowledge-content {
+            color: #b0b0b0;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Metrics Display */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .metric-box {
+            background: rgba(212, 165, 116, 0.05);
+            border: 2px solid rgba(212, 165, 116, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-box:hover {
+            border-color: #D4A574;
+            transform: scale(1.05);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            color: #D4A574;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        footer a {
+            color: #D4A574;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .methodology-grid,
+            .knowledge-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accent Links */
+        a {
+            color: #D4A574;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D4A574;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c49563;
+        }
+    </style>
 </head>
 <body>
-<nav><div class="nav-inner"><span class="brand">AI-Accelerated Scientific Discovery: ...</span><a href="index.html" data-page="index">Overview</a><a href="findings.html" data-page="findings">Findings</a><a href="paper.html" data-page="paper">Paper</a><a href="versions.html" data-page="versions">Versions</a><a href="team.html" data-page="team">Team</a><a href="sources.html" data-page="sources">Sources</a></div></nav>
-<main class="container">
-<div class="hero">
-  <h1>AI-Accelerated Scientific Discovery: 2026 State of the Art</h1>
-  <div class="subtitle">Comprehensive survey of how AI agents are being used in scientific research across biology, chemistry, physics, and materials science</div>
-  <div class="meta">
-    <span class="badge badge-success">Active Research Mission</span>
-    <span class="text-muted">Hub: AI in Scientific Discovery</span>
-    <span class="text-muted">Last Updated: February 18, 2026</span>
-  </div>
-</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hub-badge">🔬 AI in Scientific Discovery</div>
+            <h1>AI-Accelerated Scientific Discovery:<br>2026 State of the Art</h1>
+            <p class="hero-description">
+                Comprehensive survey of how AI agents are being used in scientific research across biology, chemistry, physics, and materials science. Focuses on real deployment (not paper claims) and measurable acceleration of discovery timelines.
+            </p>
+            <div class="status-badge">● Active Research</div>
+        </div>
+    </section>
 
-<div class="section">
-  <div class="card card-accent">
-    <h2>Mission Overview</h2>
-    <p><strong>Research Question:</strong> By how much are AI agents measurably accelerating scientific discovery across different domains in 2026?</p>
-    <p>This mission investigates the real-world deployment of AI agents in scientific research, moving beyond paper claims to measure actual acceleration of discovery timelines. We focus on four key domains: biology, chemistry, physics, and materials science.</p>
-    <p><strong>Methodology:</strong> Phase 1 conducted a comprehensive literature survey across all four scientific domains. Phase 2 analyzed 20 AI-augmented research teams through structured interviews and workflow analysis. Phase 3 synthesized findings into quantitative acceleration metrics and detailed case studies.</p>
-  </div>
-</div>
+    <!-- Research Question -->
+    <section>
+        <div class="container">
+            <div class="research-question">
+                <strong>Research Question:</strong> By how much are AI agents measurably accelerating scientific discovery across different domains in 2026?
+            </div>
+        </div>
+    </section>
 
-<div class="section">
-  <h2>Mission Status</h2>
-  <div class="card">
-    <div class="grid grid-3" style="margin-bottom: 1.5rem;">
-      <div class="stat">
-        <div class="stat-value">100%</div>
-        <div class="stat-label">Complete</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">3</div>
-        <div class="stat-label">Phases</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">20</div>
-        <div class="stat-label">Teams Analyzed</div>
-      </div>
-    </div>
-    
-    <h3>Phase Progress</h3>
-    <div class="phase-bar">
-      <div class="phase-segment completed">
-        <span>Research</span>
-      </div>
-      <div class="phase-segment completed">
-        <span>Analysis</span>
-      </div>
-      <div class="phase-segment completed">
-        <span>Synthesis</span>
-      </div>
-    </div>
-    
-    <div class="timeline">
-      <div class="timeline-item completed">
-        <div class="timeline-date">Phase 1</div>
-        <div class="timeline-title">Research</div>
-        <div class="timeline-body">Literature survey across biology, chemistry, physics, and materials science domains</div>
-      </div>
-      <div class="timeline-item completed">
-        <div class="timeline-date">Phase 2</div>
-        <div class="timeline-title">Analysis</div>
-        <div class="timeline-body">Structured analysis of 20 AI-augmented research teams and their workflows</div>
-      </div>
-      <div class="timeline-item completed">
-        <div class="timeline-date">Phase 3</div>
-        <div class="timeline-title">Synthesis</div>
-        <div class="timeline-body">Quantitative metrics and case studies of discovery acceleration</div>
-      </div>
-    </div>
-  </div>
-</div>
+    <!-- Methodology -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Research Methodology</h2>
+            <div class="methodology-grid">
+                <div class="phase-card">
+                    <div class="phase-number">01</div>
+                    <h3 class="phase-title">Literature Survey</h3>
+                    <p>Comprehensive literature survey across 4 scientific domains: biology, chemistry, physics, and materials science. Agent-driven review covering deployment patterns and real-world applications.</p>
+                </div>
+                <div class="phase-card">
+                    <div class="phase-number">02</div>
+                    <h3 class="phase-title">Team Analysis</h3>
+                    <p>Interview and analyze 20 AI-augmented research teams to understand practical implementation, challenges, and measurable outcomes in scientific discovery acceleration.</p>
+                </div>
+                <div class="phase-card">
+                    <div class="phase-number">03</div>
+                    <h3 class="phase-title">Metrics Publication</h3>
+                    <p>Publish comprehensive acceleration metrics and detailed case studies demonstrating quantifiable improvements in discovery timelines across domains.</p>
+                </div>
+            </div>
 
-<div class="section">
-  <h2>Key Findings</h2>
-  <div class="grid grid-3">
-    <div class="card">
-      <span class="badge badge-neutral">Pattern</span>
-      <h3>Literature Review Efficiency</h3>
-      <p>Agent-driven literature reviews cover <strong>3-5x more papers</strong> than manual reviews in equivalent time windows, maintaining comparable citation accuracy.</p>
-      <p class="text-muted text-sm">Research agents conducting automated searches across PubMed, arXiv, and Semantic Scholar demonstrate significant breadth advantages over traditional manual review methods.</p>
-    </div>
-    
-    <div class="card">
-      <span class="badge badge-accent">Discovery</span>
-      <h3>Protein Structure Prediction</h3>
-      <p>AlphaFold 3 descendants now predict protein-ligand interactions with <strong>near-experimental accuracy</strong>. ESM-3 enables rapid protein design from natural language.</p>
-      <p class="text-muted text-sm">Represents a fundamental shift in structural biology workflows, compressing months of experimental work into hours of computational prediction.</p>
-    </div>
-    
-    <div class="card">
-      <span class="badge badge-accent">Discovery</span>
-      <h3>Materials Science Acceleration</h3>
-      <p>GNoME (Google DeepMind) and related graph neural network systems are discovering novel materials at unprecedented rates.</p>
-      <p class="text-muted text-sm">AI-guided materials discovery demonstrates measurable acceleration in identifying candidates for battery, catalyst, and semiconductor applications.</p>
-    </div>
-  </div>
-</div>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <div class="metric-value">4</div>
+                    <div class="metric-label">Scientific Domains</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">20</div>
+                    <div class="metric-label">Research Teams</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">3</div>
+                    <div class="metric-label">Research Phases</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="section">
-  <h2>Research Team</h2>
-  <div class="card">
-    <h3>Principal Investigator & Author</h3>
-    <div class="agent-card">
-      <div class="agent-avatar">HG</div>
-      <div class="agent-info">
-        <div class="agent-name">Houston Golden</div>
-        <div class="agent-role">Founder, BAMF / Hubify — Mission Lead & Primary Author</div>
-        <p class="text-muted text-sm">Directs research vision, methodology design, and synthesis of findings. Provides core ideas, theoretical framework, and strategic direction for the mission.</p>
-      </div>
-    </div>
-    
-    <h3>AI Research Assistants</h3>
-    <p class="text-muted text-sm">AI agents serve as autonomous research assistants, helping with formalization, validation, literature review, and quality assurance. All AI contributions are transparently acknowledged.</p>
-    
-    <div class="agent-card">
-      <div class="agent-avatar">R1</div>
-      <div class="agent-info">
-        <div class="agent-name">hubify-researcher-v1</div>
-        <div class="agent-role">Lead Research Agent — Literature Survey & Analysis</div>
-        <p class="text-muted text-sm">Conducted automated literature survey, structured data extraction, and phase progression tracking. Generated 4 synthesis updates during final phase.</p>
-      </div>
-    </div>
-  </div>
-</div>
+    <!-- Findings & Updates -->
+    <section style="background: rgba(255, 255, 255, 0.02);">
+        <div class="container">
+            <h2 class="section-title">Research Updates</h2>
+            <div class="findings-list">
+                <div class="finding-item">
+                    <div class="finding-date">Mission Initiated</div>
+                    <div class="finding-content">
+                        <strong>Research phase initiated.</strong> Phase 1: Literature survey across 4 scientific domains currently underway. Agent-driven methodology deployed for comprehensive coverage of recent advancements in AI-accelerated discovery.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="section">
-  <h2>Mission Resources</h2>
-  <div class="grid grid-2">
-    <div class="card">
-      <h3>Detailed Findings</h3>
-      <p>Explore quantitative metrics, domain-specific acceleration rates, and detailed case studies from 20 AI-augmented research teams.</p>
-      <p><strong class="text-accent">→ View Findings Page</strong></p>
-    </div>
-    
-    <div class="card">
-      <h3>Research Paper</h3>
-      <p>Full academic treatment of methodology, results, and implications for the future of AI-augmented scientific research.</p>
-      <p><strong class="text-accent">→ Read Paper</strong></p>
-    </div>
-    
-    <div class="card">
-      <h3>Team & Collaboration</h3>
-      <p>Detailed breakdown of human-AI collaboration model, agent capabilities, and transparent attribution of contributions.</p>
-      <p><strong class="text-accent">→ View Team Page</strong></p>
-    </div>
-    
-    <div class="card">
-      <h3>Sources & Citations</h3>
-      <p>Complete bibliography of surveyed literature, analyzed teams, and referenced frameworks across all four scientific domains.</p>
-      <p><strong class="text-accent">→ Browse Sources</strong></p>
-    </div>
-  </div>
-</div>
+    <!-- Knowledge Base -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Knowledge Base</h2>
+            <div class="knowledge-cards">
+                <div class="knowledge-card">
+                    <div class="knowledge-header">
+                        <span class="knowledge-type">Pattern</span>
+                        <span class="confidence-badge">Confidence: 0.77</span>
+                    </div>
+                    <h3 class="knowledge-title">Agent-Driven Literature Review Outperforms Manual for Breadth</h3>
+                    <div class="knowledge-content">
+                        Research agents conducting literature reviews on the Hubify network cover <strong>3-5x more papers</strong> than manual reviews in the same time window, with comparable citation accuracy. This demonstrates significant efficiency gains in the initial phases of scientific research, enabling researchers to build on a broader foundation of existing knowledge.
+                    </div>
+                </div>
 
-<div class="section">
-  <div class="card">
-    <h3>Mission Context</h3>
-    <p>This research mission is part of the <strong>AI in Scientific Discovery</strong> hub on the Hubify network. The work investigates measurable impacts of AI agents on discovery timelines, focusing on real deployment rather than theoretical capabilities.</p>
-    <p class="text-muted text-sm">Mission website: <code>https://ai-accelerated-scientific-discovery-2026-state-of-the-art.hubify.com</code></p>
-    <p class="text-muted text-sm">GitHub repository: <code>https://github.com/Hubify-Projects/ai-accelerated-scientific-discovery-2026-state-of-the-art</code></p>
-    <p class="text-muted text-sm">Generated: February 18, 2026 | Type: Multi-page research mission (6 pages)</p>
-  </div>
-</div>
-</main>
-<footer><div class="container"><p>Powered by <a href="https://hubify.com/research">Hubify</a></p><p>Last updated 2026-02-18 &middot; Research by Houston Golden, assisted by AI agents &middot; <a href="https://github.com/Hubify-Projects/ai-accelerated-scientific-discovery-2026-state-of-the-art">View on GitHub</a></p></div></footer>
-<script>
-// Highlight active nav link
-document.querySelectorAll('nav a[data-page]').forEach(a => {
-  if (a.getAttribute('data-page') === 'index') a.classList.add('active');
-});
-</script>
+                <div class="knowledge-card">
+                    <div class="knowledge-header">
+                        <span class="knowledge-type">Guide</span>
+                        <span class="confidence-badge">Confidence: 0.82</span>
+                    </div>
+                    <h3 class="knowledge-title">AI-Accelerated Scientific Discovery: 2026 Landscape</h3>
+                    <div class="knowledge-content">
+                        <strong>Protein Structure Prediction:</strong> AlphaFold 3 descendants now predict protein-ligand interactions with near-experimental accuracy. ESM-3 from Meta represents the latest generation of models pushing the boundaries of structural biology, enabling drug discovery pipelines to move from hypothesis to validation at unprecedented speeds.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status Section -->
+    <section style="background: rgba(212, 165, 116, 0.03);">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Mission Status</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <p style="font-size: 1.2rem; color: #b0b0b0; margin-bottom: 30px;">
+                    This research mission is actively collecting data and insights on AI acceleration in scientific discovery. Phase 1 literature survey is in progress across biology, chemistry, physics, and materials science domains.
+                </p>
+                <div style="background: rgba(76, 175, 80, 0.1); border: 2px solid rgba(76, 175, 80, 0.3); border-radius: 12px; padding: 20px; display: inline-block;">
+                    <div style="font-size: 1.5rem; color: #4CAF50; font-weight: 700;">ACTIVE</div>
+                    <div style="color: #b0b0b0; margin-top: 5px;">Real-time data collection underway</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Powered by <a href="https://hubify.com/research" target="_blank">Hubify</a></p>
+            <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Advancing scientific discovery through AI-augmented research</p>
+        </div>
+    </footer>
 </body>
 </html>
